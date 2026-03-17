@@ -6,11 +6,15 @@ const ContactSection = () => {
   const [email, setEmail] = useState("");
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-surface">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-20 md:py-28 bg-primary relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/3 right-0 w-96 h-96 rounded-full bg-accent opacity-[0.06] blur-[100px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
+      <div className="container mx-auto px-6 relative z-10">
         <div className="mb-14 text-center">
           <p className="text-accent text-sm font-semibold tracking-widest uppercase mb-2">Peptides Rule</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Get In Touch</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground">Get In Touch</h2>
         </div>
 
         {/* Newsletter */}
