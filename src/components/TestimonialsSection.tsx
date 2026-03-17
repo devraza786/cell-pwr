@@ -54,7 +54,7 @@ const TestimonialsSection = () => (
                 <Star key={j} size={16} className="fill-accent text-accent" />
               ))}
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>
+            <p className="text-primary-foreground/60 text-sm leading-relaxed mb-6">"{t.text}"</p>
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">
                 {t.name[0]}
