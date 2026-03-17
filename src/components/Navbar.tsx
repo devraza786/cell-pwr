@@ -1,0 +1,93 @@
+import { useState } from "react";
+import { Menu, X, ShoppingCart } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
+import logo from "@/assets/logo-100yards.png";
+
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "Shop", href: "#shop" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const { totalItems } = useCart();
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+      <div className="container mx-auto flex items-center justify-between h-16 px-6">
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="100 Yards" className="h-10 w-auto" />
+        </Link>
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/cart"
+            className="relative p-2 text-foreground hover:text-accent transition-colors"
+          >
+            <ShoppingCart size={20} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-cta text-cta-foreground text-[10px] font-bold flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </Link>
+          <a
+            href="#order"
+            className="hidden md:inline-flex items-center px-5 py-2 rounded-lg bg-cta text-cta-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
+            Order Now
+          </a>
+          <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden bg-background border-b border-border overflow-hidden"
+          >
+            <div className="flex flex-col gap-4 px-6 py-4">
+              {navLinks.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  className="text-sm font-medium text-foreground"
+                  onClick={() => setOpen(false)}
+                >
+                  {l.label}
+                </a>
+              ))}
+              <a
+                href="#order"
+                className="inline-flex items-center justify-center px-5 py-2 rounded-lg bg-cta text-cta-foreground text-sm font-semibold"
+                onClick={() => setOpen(false)}
+              >
+                Order Now
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+export default Navbar;
