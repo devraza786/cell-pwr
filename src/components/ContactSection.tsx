@@ -91,7 +91,7 @@ const ContactSection = () => {
               <Clock size={22} />
             </div>
             <h4 className="font-display font-semibold text-cta text-sm uppercase tracking-wider mb-1">Hours</h4>
-            <p className="text-foreground text-sm">24/7 Support Available</p>
+            <p className="text-primary-foreground text-sm">24/7 Support Available</p>
           </motion.div>
         </div>
 
