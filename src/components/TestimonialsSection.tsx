@@ -17,8 +17,12 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => (
-  <section id="about" className="py-24 md:py-32 bg-background relative overflow-hidden">
-    <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-accent opacity-[0.03] blur-[100px] pointer-events-none" />
+  <section id="about" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+    </div>
 
     <div className="container mx-auto px-6">
       <motion.div
@@ -30,7 +34,7 @@ const TestimonialsSection = () => (
         <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold tracking-widest uppercase mb-4 border border-accent/20">
           Testimonials
         </span>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
+        <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground">
           What Our Clients Say
         </h2>
       </motion.div>
@@ -42,7 +46,7 @@ const TestimonialsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="bg-surface rounded-2xl border border-border p-8 relative group hover:shadow-lg transition-shadow duration-300"
+            className="bg-primary-foreground/5 rounded-2xl border border-primary-foreground/10 p-8 relative group hover:shadow-lg transition-shadow duration-300"
           >
             <Quote size={32} className="text-accent/10 absolute top-6 right-6" />
             <div className="flex gap-1 mb-4">
@@ -50,12 +54,12 @@ const TestimonialsSection = () => (
                 <Star key={j} size={16} className="fill-accent text-accent" />
               ))}
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>
+            <p className="text-primary-foreground/60 text-sm leading-relaxed mb-6">"{t.text}"</p>
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">
                 {t.name[0]}
               </div>
-              <p className="font-display font-semibold text-foreground text-sm">{t.name}</p>
+              <p className="font-display font-semibold text-primary-foreground text-sm">{t.name}</p>
             </div>
           </motion.div>
         ))}

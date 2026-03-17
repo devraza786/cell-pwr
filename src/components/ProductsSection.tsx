@@ -25,8 +25,12 @@ const ProductsSection = () => {
   const regular = products.filter((p) => !p.featured);
 
   return (
-    <section id="shop" className="py-24 md:py-32 bg-surface relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,hsl(var(--accent)/0.03),transparent_50%)] pointer-events-none" />
+    <section id="shop" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -38,10 +42,10 @@ const ProductsSection = () => {
           <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold tracking-widest uppercase mb-4 border border-accent/20">
             Our Products
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground">
             Check Out Our Peptide Stack
           </h2>
-          <p className="text-muted-foreground mt-3 max-w-md mx-auto text-sm">
+          <p className="text-primary-foreground/50 mt-3 max-w-md mx-auto text-sm">
             Research-grade peptides with verified purity. Every batch lab tested.
           </p>
         </motion.div>
@@ -106,14 +110,14 @@ const ProductsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.04 }}
-              className="bg-background rounded-xl border border-border p-5 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden"
+              className="bg-primary-foreground/5 rounded-xl border border-primary-foreground/10 p-5 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <img src={p.img} alt={p.name} className="h-24 w-auto mb-4 object-contain group-hover:scale-105 transition-transform duration-300" />
               </div>
-              <h3 className="font-display text-sm font-semibold text-foreground">{p.name}</h3>
-              <p className="text-xs text-muted-foreground mt-1">{p.desc}</p>
+              <h3 className="font-display text-sm font-semibold text-primary-foreground">{p.name}</h3>
+              <p className="text-xs text-primary-foreground/50 mt-1">{p.desc}</p>
               <p className="text-cta font-bold text-lg mt-3">{p.price}</p>
               <button
                 onClick={() => {
