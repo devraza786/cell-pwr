@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
@@ -17,14 +17,23 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => (
-  <section id="about" className="py-20 md:py-28 bg-background">
+  <section id="about" className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-accent opacity-[0.03] blur-[100px] pointer-events-none" />
+
     <div className="container mx-auto px-6">
-      <div className="mb-14">
-        <p className="text-accent text-sm font-semibold tracking-widest uppercase mb-2">Testimonials</p>
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-14 text-center"
+      >
+        <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold tracking-widest uppercase mb-4 border border-accent/20">
+          Testimonials
+        </span>
+        <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
           What Our Clients Say
         </h2>
-      </div>
+      </motion.div>
       <div className="grid md:grid-cols-3 gap-6">
         {testimonials.map((t, i) => (
           <motion.div
@@ -33,8 +42,9 @@ const TestimonialsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="bg-surface rounded-xl border border-border p-8"
+            className="bg-surface rounded-2xl border border-border p-8 relative group hover:shadow-lg transition-shadow duration-300"
           >
+            <Quote size={32} className="text-accent/10 absolute top-6 right-6" />
             <div className="flex gap-1 mb-4">
               {[...Array(5)].map((_, j) => (
                 <Star key={j} size={16} className="fill-accent text-accent" />
@@ -42,7 +52,7 @@ const TestimonialsSection = () => (
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold text-sm">
+              <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">
                 {t.name[0]}
               </div>
               <p className="font-display font-semibold text-foreground text-sm">{t.name}</p>
