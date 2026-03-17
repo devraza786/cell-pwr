@@ -1,28 +1,31 @@
 import { motion } from "framer-motion";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Star } from "lucide-react";
 import { toast } from "sonner";
 import vialImg from "@/assets/vial-generic.png";
+import cellpwrImg from "@/assets/cellpwr-sport.png";
 import { useCart } from "@/contexts/CartContext";
 
 const products = [
-  { name: "BPC-157", desc: "5mg / 10mg vials", price: "$49.99" },
-  { name: "TB-500", desc: "5mg / 10mg vials", price: "$54.99" },
-  { name: "GHK-Cu", desc: "50mg / 100mg vials", price: "$39.99" },
-  { name: "Ipamorelin", desc: "5mg vials", price: "$44.99" },
-  { name: "CJC-1295", desc: "2mg / 5mg vials", price: "$59.99" },
-  { name: "PT-141", desc: "10mg vials", price: "$34.99" },
-  { name: "Sermorelin", desc: "10mg vials", price: "$49.99" },
-  { name: "Selank", desc: "7mg / 5mg vials", price: "$64.99" },
-  { name: "AOD-9604", desc: "5mg / 10mg vials", price: "$29.99" },
-  { name: "GHRP-6", desc: "10mg / 50mg vials", price: "$79.99" },
+  { name: "Cell PWR Sport", desc: "Glycopeptides · 150g", price: "$89.99", featured: true, img: cellpwrImg },
+  { name: "BPC-157", desc: "5mg / 10mg vials", price: "$49.99", featured: false, img: vialImg },
+  { name: "TB-500", desc: "5mg / 10mg vials", price: "$54.99", featured: false, img: vialImg },
+  { name: "GHK-Cu", desc: "50mg / 100mg vials", price: "$39.99", featured: false, img: vialImg },
+  { name: "Ipamorelin", desc: "5mg vials", price: "$44.99", featured: false, img: vialImg },
+  { name: "CJC-1295", desc: "2mg / 5mg vials", price: "$59.99", featured: false, img: vialImg },
+  { name: "PT-141", desc: "10mg vials", price: "$34.99", featured: false, img: vialImg },
+  { name: "Sermorelin", desc: "10mg vials", price: "$49.99", featured: false, img: vialImg },
+  { name: "Selank", desc: "7mg / 5mg vials", price: "$64.99", featured: false, img: vialImg },
+  { name: "AOD-9604", desc: "5mg / 10mg vials", price: "$29.99", featured: false, img: vialImg },
+  { name: "GHRP-6", desc: "10mg / 50mg vials", price: "$79.99", featured: false, img: vialImg },
 ];
 
 const ProductsSection = () => {
   const { addItem } = useCart();
+  const featured = products.find((p) => p.featured)!;
+  const regular = products.filter((p) => !p.featured);
 
   return (
     <section id="shop" className="py-24 md:py-32 bg-surface relative overflow-hidden">
-      {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,hsl(var(--accent)/0.03),transparent_50%)] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -42,8 +45,61 @@ const ProductsSection = () => {
             Research-grade peptides with verified purity. Every batch lab tested.
           </p>
         </motion.div>
+
+        {/* Featured Product - Cell PWR Sport */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12 relative"
+        >
+          <div className="bg-primary rounded-2xl border border-border overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[hsl(175,80%,50%)] opacity-[0.06] blur-[100px]" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 items-center relative z-10">
+              <div className="flex justify-center">
+                <img
+                  src={featured.img}
+                  alt={featured.name}
+                  className="w-48 md:w-64 object-contain drop-shadow-[0_0_40px_rgba(0,255,200,0.12)]"
+                />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="px-3 py-1 rounded-full bg-[hsl(175,80%,50%)]/15 text-[hsl(175,80%,65%)] text-[10px] font-bold tracking-widest uppercase border border-[hsl(175,80%,50%)]/20">
+                    Featured
+                  </span>
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={12} className="fill-[hsl(175,80%,65%)] text-[hsl(175,80%,65%)]" />
+                    ))}
+                  </div>
+                </div>
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-1">
+                  {featured.name}
+                </h3>
+                <p className="text-primary-foreground/50 text-sm mb-1">{featured.desc}</p>
+                <p className="text-[hsl(175,80%,65%)] text-xs mb-4">Natural Body Optimization · Dietary Supplement</p>
+                <p className="text-[hsl(175,80%,65%)] font-bold text-2xl mb-5">{featured.price}</p>
+                <button
+                  onClick={() => {
+                    addItem(featured);
+                    toast.success(`${featured.name} added to cart`);
+                  }}
+                  className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-[hsl(175,80%,50%)] text-primary font-bold text-sm hover:opacity-90 transition-opacity"
+                >
+                  <ShoppingCart size={16} />
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Regular Products Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-          {products.map((p, i) => (
+          {regular.map((p, i) => (
             <motion.div
               key={p.name}
               initial={{ opacity: 0, y: 20 }}
@@ -54,7 +110,7 @@ const ProductsSection = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
-                <img src={vialImg} alt={p.name} className="h-24 w-auto mb-4 object-contain group-hover:scale-105 transition-transform duration-300" />
+                <img src={p.img} alt={p.name} className="h-24 w-auto mb-4 object-contain group-hover:scale-105 transition-transform duration-300" />
               </div>
               <h3 className="font-display text-sm font-semibold text-foreground">{p.name}</h3>
               <p className="text-xs text-muted-foreground mt-1">{p.desc}</p>

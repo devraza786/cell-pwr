@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
-import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Check } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowLeft, Check, ShieldCheck, Lock } from "lucide-react";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const CheckoutPage = () => {
   const { items, totalPrice, clearCart } = useCart();
-  const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
 
   if (submitted) {
@@ -15,21 +15,25 @@ const CheckoutPage = () => {
       <div className="min-h-screen bg-background flex flex-col">
         <Navbar />
         <main className="flex-1 pt-24 pb-20 flex items-center justify-center">
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mb-6">
-              <Check size={32} />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center justify-center h-20 w-20 rounded-full bg-accent/10 text-accent mb-6">
+              <Check size={36} strokeWidth={3} />
             </div>
             <h1 className="font-display text-3xl font-bold text-foreground mb-3">Order Placed!</h1>
-            <p className="text-muted-foreground mb-8">
-              Your order has been sent to 100YARDS for processing.
+            <p className="text-muted-foreground mb-8 max-w-sm">
+              Your order has been sent to 100YARDS for processing. We'll be in touch shortly.
             </p>
             <Link
               to="/"
-              className="inline-flex px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+              className="inline-flex px-8 py-3.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
             >
               Back to Home
             </Link>
-          </div>
+          </motion.div>
         </main>
         <Footer />
       </div>
@@ -64,7 +68,12 @@ const CheckoutPage = () => {
           <Link to="/cart" className="inline-flex items-center gap-2 text-accent text-sm font-medium mb-8 hover:underline">
             <ArrowLeft size={16} /> Back to Cart
           </Link>
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-10">Checkout</h1>
+          <div className="flex items-center gap-3 mb-10">
+            <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center">
+              <Lock size={20} className="text-accent" />
+            </div>
+            <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground">Checkout</h1>
+          </div>
 
           <div className="grid md:grid-cols-5 gap-10">
             {/* Form */}
@@ -76,7 +85,10 @@ const CheckoutPage = () => {
                 setSubmitted(true);
               }}
             >
-              <h2 className="font-display text-lg font-semibold text-foreground">Shipping Information</h2>
+              <h2 className="font-display text-lg font-semibold text-foreground flex items-center gap-2">
+                <ShieldCheck size={18} className="text-accent" />
+                Shipping Information
+              </h2>
               {["Full Name", "Address", "City", "Email", "Phone"].map((f) => (
                 <div key={f}>
                   <label className="text-sm font-medium text-foreground block mb-1.5">{f}</label>
@@ -84,7 +96,7 @@ const CheckoutPage = () => {
                     type={f === "Email" ? "email" : f === "Phone" ? "tel" : "text"}
                     required
                     placeholder={f}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent transition-shadow"
                   />
                 </div>
               ))}
@@ -95,7 +107,7 @@ const CheckoutPage = () => {
                     type="text"
                     required
                     placeholder="State"
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent transition-shadow"
                   />
                 </div>
                 <div>
@@ -104,42 +116,47 @@ const CheckoutPage = () => {
                     type="text"
                     required
                     placeholder="ZIP"
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent transition-shadow"
                   />
                 </div>
               </div>
               <button
                 type="submit"
-                className="w-full py-3 rounded-lg bg-cta text-cta-foreground font-semibold text-sm hover:opacity-90 transition-opacity mt-4"
+                className="w-full py-3.5 rounded-xl bg-cta text-cta-foreground font-semibold text-sm hover:opacity-90 transition-opacity mt-4"
               >
                 Place Order — ${totalPrice.toFixed(2)}
               </button>
-              <p className="text-muted-foreground text-xs text-center">
-                Orders will be sent to 100YARDS for processing
+              <p className="text-muted-foreground text-xs text-center flex items-center justify-center gap-1">
+                <Lock size={10} /> Orders will be sent to 100YARDS for processing
               </p>
             </form>
 
             {/* Order Summary */}
             <div className="md:col-span-2">
-              <div className="bg-surface rounded-xl border border-border p-6 sticky top-24">
-                <h2 className="font-display text-lg font-semibold text-foreground mb-4">Order Summary</h2>
-                <div className="space-y-3 mb-6">
-                  {items.map((item) => (
-                    <div key={item.name} className="flex justify-between text-sm">
-                      <span className="text-foreground">
-                        {item.name} <span className="text-muted-foreground">×{item.qty}</span>
-                      </span>
-                      <span className="font-medium text-foreground">
-                        ${(item.price * item.qty).toFixed(2)}
-                      </span>
-                    </div>
-                  ))}
+              <div className="bg-primary rounded-2xl p-6 sticky top-24 relative overflow-hidden">
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-accent opacity-[0.06] blur-[60px]" />
                 </div>
-                <div className="border-t border-border pt-4 flex justify-between">
-                  <span className="font-display font-semibold text-foreground">Total</span>
-                  <span className="font-display font-bold text-lg text-foreground">
-                    ${totalPrice.toFixed(2)}
-                  </span>
+                <div className="relative z-10">
+                  <h2 className="font-display text-lg font-semibold text-primary-foreground mb-5">Order Summary</h2>
+                  <div className="space-y-3 mb-6">
+                    {items.map((item) => (
+                      <div key={item.name} className="flex justify-between text-sm">
+                        <span className="text-primary-foreground/80">
+                          {item.name} <span className="text-primary-foreground/40">×{item.qty}</span>
+                        </span>
+                        <span className="font-medium text-primary-foreground">
+                          ${(item.price * item.qty).toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-primary-foreground/10 pt-4 flex justify-between items-center">
+                    <span className="font-display font-semibold text-primary-foreground">Total</span>
+                    <span className="font-display font-bold text-xl text-primary-foreground">
+                      ${totalPrice.toFixed(2)}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
