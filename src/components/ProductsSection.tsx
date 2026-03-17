@@ -25,8 +25,12 @@ const ProductsSection = () => {
   const regular = products.filter((p) => !p.featured);
 
   return (
-    <section id="shop" className="py-24 md:py-32 bg-surface relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,hsl(var(--accent)/0.03),transparent_50%)] pointer-events-none" />
+    <section id="shop" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
