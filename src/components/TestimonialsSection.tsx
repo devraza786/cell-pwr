@@ -59,7 +59,7 @@ const TestimonialsSection = () => (
               <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">
                 {t.name[0]}
               </div>
-              <p className="font-display font-semibold text-foreground text-sm">{t.name}</p>
+              <p className="font-display font-semibold text-primary-foreground text-sm">{t.name}</p>
             </div>
           </motion.div>
         ))}

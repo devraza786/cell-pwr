@@ -110,14 +110,14 @@ const ProductsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.04 }}
-              className="bg-background rounded-xl border border-border p-5 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden"
+              className="bg-primary-foreground/5 rounded-xl border border-primary-foreground/10 p-5 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <img src={p.img} alt={p.name} className="h-24 w-auto mb-4 object-contain group-hover:scale-105 transition-transform duration-300" />
               </div>
-              <h3 className="font-display text-sm font-semibold text-foreground">{p.name}</h3>
-              <p className="text-xs text-muted-foreground mt-1">{p.desc}</p>
+              <h3 className="font-display text-sm font-semibold text-primary-foreground">{p.name}</h3>
+              <p className="text-xs text-primary-foreground/50 mt-1">{p.desc}</p>
               <p className="text-cta font-bold text-lg mt-3">{p.price}</p>
               <button
                 onClick={() => {
