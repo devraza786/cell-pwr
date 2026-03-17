@@ -67,7 +67,7 @@ const ContactSection = () => {
               <Mail size={22} />
             </div>
             <h4 className="font-display font-semibold text-cta text-sm uppercase tracking-wider mb-1">Email</h4>
-            <p className="text-foreground text-sm">support@peptidesrule.com</p>
+            <p className="text-primary-foreground text-sm">support@peptidesrule.com</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
