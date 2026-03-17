@@ -46,7 +46,7 @@ const TestimonialsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="bg-surface rounded-2xl border border-border p-8 relative group hover:shadow-lg transition-shadow duration-300"
+            className="bg-primary-foreground/5 rounded-2xl border border-primary-foreground/10 p-8 relative group hover:shadow-lg transition-shadow duration-300"
           >
             <Quote size={32} className="text-accent/10 absolute top-6 right-6" />
             <div className="flex gap-1 mb-4">
