@@ -79,7 +79,7 @@ const ContactSection = () => {
               <Phone size={22} />
             </div>
             <h4 className="font-display font-semibold text-cta text-sm uppercase tracking-wider mb-1">Phone</h4>
-            <p className="text-foreground text-sm">1-800-PEPTIDES</p>
+            <p className="text-primary-foreground text-sm">1-800-PEPTIDES</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
