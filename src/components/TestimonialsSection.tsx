@@ -34,7 +34,7 @@ const TestimonialsSection = () => (
         <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold tracking-widest uppercase mb-4 border border-accent/20">
           Testimonials
         </span>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
+        <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground">
           What Our Clients Say
         </h2>
       </motion.div>
