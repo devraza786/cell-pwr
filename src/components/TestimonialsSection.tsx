@@ -17,8 +17,12 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => (
-  <section id="about" className="py-24 md:py-32 bg-background relative overflow-hidden">
-    <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-accent opacity-[0.03] blur-[100px] pointer-events-none" />
+  <section id="about" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+    </div>
 
     <div className="container mx-auto px-6">
       <motion.div
