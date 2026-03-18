@@ -35,7 +35,7 @@ const FAQSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-primary relative overflow-hidden">
+    <section ref={ref} className="py-16 md:py-24 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" style={{ transform: `translateY(${offset}px)` }}>
         <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-accent opacity-[0.06] blur-[100px]" />
         <div className="absolute bottom-20 right-0 w-80 h-80 rounded-full bg-cta opacity-[0.04] blur-[80px]" />

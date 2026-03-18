@@ -9,7 +9,7 @@ const badges = [
 ];
 
 const HeroSection = () => (
-  <section id="home" className="pt-4">
+  <section id="home" className="pt-20 md:pt-24">
     <div className="relative overflow-hidden bg-primary">
       {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -18,7 +18,7 @@ const HeroSection = () => (
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
-      <div className="container mx-auto px-6 py-24 md:py-36 flex flex-col md:flex-row items-center gap-16 relative z-10">
+      <div className="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12 md:gap-16 relative z-10">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}

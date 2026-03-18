@@ -22,7 +22,7 @@ const PowerPowderSection = () => {
   const { ref, offset } = useParallax(0.3);
 
   return (
-    <section ref={ref} className="relative py-24 md:py-36 bg-primary overflow-hidden">
+    <section ref={ref} className="relative py-16 md:py-24 bg-primary overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none" style={{ transform: `translateY(${offset}px)` }}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[hsl(175,80%,50%)] opacity-[0.06] blur-[120px]" />
@@ -30,7 +30,7 @@ const PowerPowderSection = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Product Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85, rotate: -3 }}

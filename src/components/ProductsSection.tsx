@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ShoppingCart, Star } from "lucide-react";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 import vialImg from "@/assets/vial-generic.png";
 import cellpwrImg from "@/assets/cellpwr-sport.png";
 import { useCart } from "@/contexts/CartContext";
@@ -60,7 +61,7 @@ const ProductsSection = () => {
           {JSON.stringify(productSchemaData)}
         </script>
       </Helmet>
-      <section ref={ref} id="shop" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+      <section ref={ref} id="shop" className="py-16 md:py-24 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" style={{ transform: `translateY(${offset}px)` }}>
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
         <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />
@@ -92,11 +93,12 @@ const ProductsSection = () => {
           viewport={{ once: true }}
           className="mb-12 relative"
         >
-          <div className="bg-primary rounded-2xl border border-border overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[hsl(175,80%,50%)] opacity-[0.06] blur-[100px]" />
-            </div>
-            <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 items-center relative z-10">
+          <Link to={`/product/${featured.name.toLowerCase().replace(/\s+/g, "-")}`} className="block">
+            <div className="bg-primary rounded-2xl border border-border overflow-hidden cursor-pointer hover:shadow-2xl transition-shadow duration-300">
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[hsl(175,80%,50%)] opacity-[0.06] blur-[100px]" />
+              </div>
+              <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 items-center relative z-10">
               <div className="flex justify-center">
                 <img
                   src={featured.img}
@@ -133,7 +135,8 @@ const ProductsSection = () => {
                 </button>
               </div>
             </div>
-          </div>
+            </div>
+          </Link>
         </motion.div>
 
         {/* Regular Products Grid */}
@@ -147,13 +150,15 @@ const ProductsSection = () => {
               transition={{ delay: i * 0.04 }}
               className="bg-primary-foreground/5 rounded-xl border border-primary-foreground/10 p-5 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative">
-                <img src={p.img} alt={p.name} className="h-24 w-auto mb-4 object-contain group-hover:scale-105 transition-transform duration-300" />
-              </div>
-              <h3 className="font-display text-sm font-semibold text-primary-foreground">{p.name}</h3>
-              <p className="text-xs text-primary-foreground/50 mt-1">{p.desc}</p>
-              <p className="text-cta font-bold text-lg mt-3">{p.price}</p>
+              <Link to={`/product/${p.name.toLowerCase().replace(/\s+/g, "-")}`} className="w-full flex flex-col items-center flex-1">
+                <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative">
+                  <img src={p.img} alt={p.name} className="h-24 w-auto mb-4 object-contain group-hover:scale-105 transition-transform duration-300" />
+                </div>
+                <h3 className="font-display text-sm font-semibold text-primary-foreground">{p.name}</h3>
+                <p className="text-xs text-primary-foreground/50 mt-1">{p.desc}</p>
+                <p className="text-cta font-bold text-lg mt-3">{p.price}</p>
+              </Link>
               <button
                 onClick={() => {
                   addItem(p);

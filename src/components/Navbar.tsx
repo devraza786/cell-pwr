@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 
 const logoUrl = "https://cdn.builder.io/api/v1/image/assets%2Fd4fa75cea8dc4bea80ee4cb1488f6829%2Fc5b08b69ba0c4bc28267cbe9c0361757?format=webp&width=800&height=1200";
@@ -16,9 +16,10 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { totalItems } = useCart();
+  const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-gray-800">
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <Link to="/" className="flex items-center gap-2">
           <img src={logoUrl} alt="Cell PWR" className="h-10 md:h-16 w-auto" />
@@ -28,7 +29,13 @@ const Navbar = () => {
             <a
               key={l.label}
               href={l.href}
-              className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
+              onClick={(e) => {
+                if (location.pathname !== "/") {
+                  e.preventDefault();
+                  window.location.href = `/${l.href}`;
+                }
+              }}
+              className="text-sm font-medium text-white hover:text-gray-300 transition-colors"
             >
               {l.label}
             </a>
@@ -37,7 +44,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/cart"
-            className="relative p-2 text-black hover:text-gray-600 transition-colors"
+            className="relative p-2 text-white hover:text-gray-400 transition-colors"
           >
             <ShoppingCart size={20} />
             {totalItems > 0 && (
@@ -48,11 +55,17 @@ const Navbar = () => {
           </Link>
           <a
             href="#order"
+            onClick={(e) => {
+              if (location.pathname !== "/") {
+                e.preventDefault();
+                window.location.href = "/#order";
+              }
+            }}
             className="hidden md:inline-flex items-center px-5 py-2 rounded-lg bg-cta text-cta-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Order Now
           </a>
-          <button className="md:hidden text-black" onClick={() => setOpen(!open)}>
+          <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -63,7 +76,7 @@ const Navbar = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-white border-b border-gray-200 overflow-hidden"
+            className="md:hidden bg-black border-b border-gray-800 overflow-hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-4">
               {navLinks.map((l) => (
@@ -71,7 +84,13 @@ const Navbar = () => {
                   key={l.label}
                   href={l.href}
                   className="text-sm font-medium text-black hover:text-gray-600"
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    setOpen(false);
+                    if (location.pathname !== "/") {
+                      e.preventDefault();
+                      window.location.href = `/${l.href}`;
+                    }
+                  }}
                 >
                   {l.label}
                 </a>
@@ -79,7 +98,13 @@ const Navbar = () => {
               <a
                 href="#order"
                 className="inline-flex items-center justify-center px-5 py-2 rounded-lg bg-cta text-cta-foreground text-sm font-semibold"
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  setOpen(false);
+                  if (location.pathname !== "/") {
+                    e.preventDefault();
+                    window.location.href = "/#order";
+                  }
+                }}
               >
                 Order Now
               </a>
