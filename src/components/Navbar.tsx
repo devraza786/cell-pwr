@@ -18,7 +18,7 @@ const Navbar = () => {
   const { totalItems } = useCart();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <Link to="/" className="flex items-center gap-2">
           <img src={logoUrl} alt="Cell PWR" className="h-10 md:h-16 w-auto" />
@@ -28,7 +28,7 @@ const Navbar = () => {
             <a
               key={l.label}
               href={l.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
             >
               {l.label}
             </a>
@@ -37,7 +37,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/cart"
-            className="relative p-2 text-foreground hover:text-accent transition-colors"
+            className="relative p-2 text-black hover:text-gray-600 transition-colors"
           >
             <ShoppingCart size={20} />
             {totalItems > 0 && (
@@ -52,7 +52,7 @@ const Navbar = () => {
           >
             Order Now
           </a>
-          <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+          <button className="md:hidden text-black" onClick={() => setOpen(!open)}>
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -63,14 +63,14 @@ const Navbar = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-background border-b border-border overflow-hidden"
+            className="md:hidden bg-white border-b border-gray-200 overflow-hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-4">
               {navLinks.map((l) => (
                 <a
                   key={l.label}
                   href={l.href}
-                  className="text-sm font-medium text-foreground"
+                  className="text-sm font-medium text-black hover:text-gray-600"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}

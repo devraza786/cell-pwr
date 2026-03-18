@@ -64,7 +64,12 @@ const OrderPage = () => {
         <meta property="og:description" content="Create a custom order with Cell PWR's premium products." />
         <meta property="og:url" content="https://cellpwr.com/order" />
       </Helmet>
-      <div className="min-h-screen bg-background flex flex-col">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="min-h-screen bg-background flex flex-col">
         <Navbar />
         <main className="flex-1 pt-24 pb-20">
           <div className="container mx-auto px-6 max-w-2xl">
@@ -151,7 +156,7 @@ const OrderPage = () => {
           </div>
         </main>
         <Footer />
-      </div>
+      </motion.div>
     </>
   );
 };

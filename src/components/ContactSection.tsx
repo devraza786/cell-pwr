@@ -107,6 +107,32 @@ const ContactSection = () => {
             </a>
           ))}
         </div>
+
+        {/* Google Maps Embed */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="mt-16 max-w-4xl mx-auto"
+        >
+          <h3 className="font-display text-xl font-semibold text-primary-foreground mb-4 text-center">Visit Us</h3>
+          <div className="rounded-xl overflow-hidden border border-primary-foreground/20 h-96">
+            <iframe
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3201.3738402923817!2d-78.5381!3d35.9101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89acc3e0e0e0e0e1%3A0xe0e0e0e0e0e0e0e0!2s7640%20Hasentree%20Way%2C%20Wake%20Forest%2C%20NC%2027587!5e0!3m2!1sen!2sus!4v1234567890"
+              title="Cell PWR Location"
+            />
+          </div>
+          <p className="text-primary-foreground/60 text-sm mt-4 text-center">
+            7640 Hasentree Way, Wake Forest, NC 27587
+          </p>
+        </motion.div>
       </div>
     </section>
   );

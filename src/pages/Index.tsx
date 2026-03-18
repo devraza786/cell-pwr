@@ -1,9 +1,11 @@
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PowerPowderSection from "@/components/PowerPowderSection";
 import ProductsSection from "@/components/ProductsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
 import OrderCTA from "@/components/OrderCTA";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -95,16 +97,23 @@ const Index = () => (
       </script>
     </Helmet>
 
-    <div className="min-h-screen bg-primary">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="min-h-screen bg-primary"
+    >
       <Navbar />
       <HeroSection />
       <PowerPowderSection />
       <ProductsSection />
       <TestimonialsSection />
+      <FAQSection />
       <OrderCTA />
       <ContactSection />
       <Footer />
-    </div>
+    </motion.div>
   </>
 );
 
