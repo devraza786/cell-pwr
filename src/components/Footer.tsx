@@ -8,7 +8,7 @@ const Footer = () => (
         {/* Brand Section */}
         <div className="md:col-span-1">
           <div className="flex flex-col gap-4">
-            <img src={logoUrl} alt="Cell PWR" className="h-12 w-auto" />
+            <img src={logoUrl} alt="Cell PWR" className="h-16 w-auto" />
             <div>
               <p className="text-white text-sm font-bold">Cell PWR</p>
               <p className="text-white/60 text-xs mt-1">Premium Wellness Products</p>

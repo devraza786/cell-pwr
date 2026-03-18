@@ -125,7 +125,7 @@ const CheckoutPage = () => {
                   />
                 </div>
               ))}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium text-foreground block mb-1.5">State</label>
                   <input
@@ -158,7 +158,7 @@ const CheckoutPage = () => {
 
             {/* Order Summary */}
             <div className="md:col-span-2">
-              <div className="bg-primary rounded-2xl p-6 sticky top-24 relative overflow-hidden">
+              <div className="bg-primary rounded-2xl p-6 md:sticky md:top-24 relative overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-accent opacity-[0.06] blur-[60px]" />
                 </div>
