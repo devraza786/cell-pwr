@@ -9,7 +9,7 @@ const badges = [
 ];
 
 const HeroSection = () => (
-  <section id="home" className="pt-16">
+  <section id="home" className="pt-4">
     <div className="relative overflow-hidden bg-primary">
       {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
