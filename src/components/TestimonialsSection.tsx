@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { useParallax } from "@/hooks/use-parallax";
 
 const testimonials = [
   {
@@ -16,9 +17,12 @@ const testimonials = [
   },
 ];
 
-const TestimonialsSection = () => (
-  <section id="about" className="py-24 md:py-32 bg-primary relative overflow-hidden">
-    <div className="absolute inset-0 pointer-events-none">
+const TestimonialsSection = () => {
+  const { ref, offset } = useParallax(0.2);
+
+  return (
+    <section ref={ref} id="about" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none" style={{ transform: `translateY(${offset}px)` }}>
       <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
       <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -38,7 +42,7 @@ const TestimonialsSection = () => (
           What Our Clients Say
         </h2>
       </motion.div>
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-8">
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}
@@ -46,26 +50,30 @@ const TestimonialsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="bg-primary-foreground/5 rounded-2xl border border-primary-foreground/10 p-8 relative group hover:shadow-lg transition-shadow duration-300"
+            className="bg-gradient-to-br from-primary-foreground/[0.08] to-primary-foreground/[0.03] rounded-2xl border border-primary-foreground/15 p-8 relative group hover:border-accent/40 hover:shadow-xl transition-all duration-300"
           >
-            <Quote size={32} className="text-accent/10 absolute top-6 right-6" />
-            <div className="flex gap-1 mb-4">
+            <Quote size={40} className="text-accent/15 absolute top-4 right-4" />
+            <div className="flex gap-1 mb-6">
               {[...Array(5)].map((_, j) => (
-                <Star key={j} size={16} className="fill-accent text-accent" />
+                <Star key={j} size={18} className="fill-accent text-accent" />
               ))}
             </div>
-            <p className="text-primary-foreground/60 text-sm leading-relaxed mb-6">"{t.text}"</p>
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">
+            <p className="text-primary-foreground/70 text-base leading-relaxed mb-8 font-medium">"{t.text}"</p>
+            <div className="flex items-center gap-4 pt-4 border-t border-primary-foreground/10">
+              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-accent/40 to-accent/20 flex items-center justify-center text-accent font-bold text-lg flex-shrink-0">
                 {t.name[0]}
               </div>
-              <p className="font-display font-semibold text-primary-foreground text-sm">{t.name}</p>
+              <div>
+                <p className="font-display font-semibold text-primary-foreground text-sm">{t.name}</p>
+                <p className="text-primary-foreground/40 text-xs">Verified Customer</p>
+              </div>
             </div>
           </motion.div>
         ))}
       </div>
     </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default TestimonialsSection;

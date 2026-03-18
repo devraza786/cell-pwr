@@ -12,15 +12,23 @@ const CartPage = () => {
   return (
     <>
       <Helmet>
-        <title>Shopping Cart - Cell PWR</title>
-        <meta name="description" content="Review your shopping cart and proceed to checkout. Fast and secure ordering for Cell PWR wellness products." />
+        <title>Shopping Cart - Cell PWR | Peptide Supplements</title>
+        <meta name="description" content="Review your shopping cart and proceed to checkout. Fast and secure ordering for Cell PWR wellness products. Premium research-grade peptides." />
         <meta name="robots" content="noindex, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href="https://cellpwr.com/cart" />
         <meta property="og:title" content="Shopping Cart - Cell PWR" />
-        <meta property="og:description" content="Review your shopping cart and proceed to checkout." />
+        <meta property="og:description" content="Review your shopping cart and proceed to checkout. Premium peptides and wellness supplements." />
         <meta property="og:url" content="https://cellpwr.com/cart" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
       </Helmet>
-      <div className="min-h-screen bg-background flex flex-col">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="min-h-screen bg-background flex flex-col">
         <Navbar />
         <main className="flex-1 pt-24 pb-20">
         <div className="container mx-auto px-6 max-w-3xl">
@@ -143,7 +151,7 @@ const CartPage = () => {
         </div>
         </main>
         <Footer />
-      </div>
+      </motion.div>
     </>
   );
 };

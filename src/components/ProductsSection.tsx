@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import vialImg from "@/assets/vial-generic.png";
 import cellpwrImg from "@/assets/cellpwr-sport.png";
 import { useCart } from "@/contexts/CartContext";
+import { useParallax } from "@/hooks/use-parallax";
 
 const products = [
   { name: "Cell PWR Sport", desc: "Glycopeptides · 150g", price: "$89.99", featured: true, img: cellpwrImg },
@@ -22,6 +23,7 @@ const products = [
 
 const ProductsSection = () => {
   const { addItem } = useCart();
+  const { ref, offset } = useParallax(0.25);
   const featured = products.find((p) => p.featured)!;
   const regular = products.filter((p) => !p.featured);
 
@@ -58,8 +60,8 @@ const ProductsSection = () => {
           {JSON.stringify(productSchemaData)}
         </script>
       </Helmet>
-      <section id="shop" className="py-24 md:py-32 bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+      <section ref={ref} id="shop" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" style={{ transform: `translateY(${offset}px)` }}>
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
         <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
