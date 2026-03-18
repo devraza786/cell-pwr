@@ -18,7 +18,7 @@ const Navbar = () => {
   const { totalItems } = useCart();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <Link to="/" className="flex items-center gap-2">
           <img src={logoUrl} alt="Cell PWR" className="h-16 w-auto" />
