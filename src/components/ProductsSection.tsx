@@ -61,7 +61,7 @@ const ProductsSection = () => {
           {JSON.stringify(productSchemaData)}
         </script>
       </Helmet>
-      <section ref={ref} id="shop" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+      <section ref={ref} id="shop" className="py-16 md:py-24 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" style={{ transform: `translateY(${offset}px)` }}>
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
         <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />

@@ -90,7 +90,7 @@ const ProductDetailPage = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-primary py-12 md:py-20 px-6">
+      <div className="min-h-screen bg-primary pt-20 md:pt-24 pb-12 md:pb-20 px-6">
         <div className="container mx-auto max-w-4xl">
           {/* Back Button */}
           <motion.button
