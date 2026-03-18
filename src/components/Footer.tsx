@@ -1,10 +1,10 @@
-import logo from "@/assets/logo-100yards.png";
+const logoUrl = "https://cdn.builder.io/api/v1/image/assets%2Fd4fa75cea8dc4bea80ee4cb1488f6829%2Fc5b08b69ba0c4bc28267cbe9c0361757?format=webp&width=800&height=1200";
 
 const Footer = () => (
   <footer className="bg-foreground py-10">
     <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
       <div className="flex items-center gap-4">
-        <img src={logo} alt="100 Yards" className="h-10 w-auto brightness-0 invert" />
+        <img src={logoUrl} alt="Cell PWR" className="h-10 w-auto brightness-0 invert" />
         <div className="text-left">
           <p className="text-background text-xs font-bold">100 YARDS LLC</p>
           <p className="text-background/50 text-xs">7640 HASENTREE WAY</p>

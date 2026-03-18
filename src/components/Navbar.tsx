@@ -3,7 +3,8 @@ import { Menu, X, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
-import logo from "@/assets/logo-100yards.png";
+
+const logoUrl = "https://cdn.builder.io/api/v1/image/assets%2Fd4fa75cea8dc4bea80ee4cb1488f6829%2Fc5b08b69ba0c4bc28267cbe9c0361757?format=webp&width=800&height=1200";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -20,7 +21,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="100 Yards" className="h-16 w-auto" />
+          <img src={logoUrl} alt="Cell PWR" className="h-16 w-auto" />
         </Link>
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => (
