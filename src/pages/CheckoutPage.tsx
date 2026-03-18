@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useCart } from "@/contexts/CartContext";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Check, ShieldCheck, Lock } from "lucide-react";
@@ -12,59 +13,83 @@ const CheckoutPage = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Navbar />
-        <main className="flex-1 pt-24 pb-20 flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center"
-          >
-            <div className="inline-flex items-center justify-center h-20 w-20 rounded-full bg-accent/10 text-accent mb-6">
-              <Check size={36} strokeWidth={3} />
-            </div>
-            <h1 className="font-display text-3xl font-bold text-foreground mb-3">Order Placed!</h1>
-            <p className="text-muted-foreground mb-8 max-w-sm">
-              Your order has been sent to 100YARDS for processing. We'll be in touch shortly.
-            </p>
-            <Link
-              to="/"
-              className="inline-flex px-8 py-3.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+      <>
+        <Helmet>
+          <title>Order Confirmation - Cell PWR</title>
+          <meta name="description" content="Your order has been successfully placed and sent for processing." />
+          <meta name="robots" content="noindex, follow" />
+        </Helmet>
+        <div className="min-h-screen bg-background flex flex-col">
+          <Navbar />
+          <main className="flex-1 pt-24 pb-20 flex items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center"
             >
-              Back to Home
-            </Link>
-          </motion.div>
-        </main>
-        <Footer />
-      </div>
+              <div className="inline-flex items-center justify-center h-20 w-20 rounded-full bg-accent/10 text-accent mb-6">
+                <Check size={36} strokeWidth={3} />
+              </div>
+              <h1 className="font-display text-3xl font-bold text-foreground mb-3">Order Placed!</h1>
+              <p className="text-muted-foreground mb-8 max-w-sm">
+                Your order has been sent to 100YARDS for processing. We'll be in touch shortly.
+              </p>
+              <Link
+                to="/"
+                className="inline-flex px-8 py-3.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+              >
+                Back to Home
+              </Link>
+            </motion.div>
+          </main>
+          <Footer />
+        </div>
+      </>
     );
   }
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Navbar />
-        <main className="flex-1 pt-24 pb-20 flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-muted-foreground text-lg mb-4">No items to checkout</p>
-            <Link
-              to="/"
-              className="inline-flex px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
-            >
-              Continue Shopping
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </div>
+      <>
+        <Helmet>
+          <title>Checkout - Cell PWR</title>
+          <meta name="description" content="Complete your purchase at Cell PWR with a secure, fast checkout process." />
+          <meta name="robots" content="noindex, follow" />
+        </Helmet>
+        <div className="min-h-screen bg-background flex flex-col">
+          <Navbar />
+          <main className="flex-1 pt-24 pb-20 flex items-center justify-center">
+            <div className="text-center">
+              <p className="text-muted-foreground text-lg mb-4">No items to checkout</p>
+              <Link
+                to="/"
+                className="inline-flex px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+              >
+                Continue Shopping
+              </Link>
+            </div>
+          </main>
+          <Footer />
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      <main className="flex-1 pt-24 pb-20">
-        <div className="container mx-auto px-6 max-w-4xl">
+    <>
+      <Helmet>
+        <title>Checkout - Cell PWR</title>
+        <meta name="description" content="Complete your purchase at Cell PWR with a secure, fast checkout process." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://cellpwr.com/checkout" />
+        <meta property="og:title" content="Checkout - Cell PWR" />
+        <meta property="og:description" content="Complete your purchase securely." />
+        <meta property="og:url" content="https://cellpwr.com/checkout" />
+      </Helmet>
+      <div className="min-h-screen bg-background flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24 pb-20">
+          <div className="container mx-auto px-6 max-w-4xl">
           <Link to="/cart" className="inline-flex items-center gap-2 text-accent text-sm font-medium mb-8 hover:underline">
             <ArrowLeft size={16} /> Back to Cart
           </Link>
@@ -100,7 +125,7 @@ const CheckoutPage = () => {
                   />
                 </div>
               ))}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium text-foreground block mb-1.5">State</label>
                   <input
@@ -133,7 +158,7 @@ const CheckoutPage = () => {
 
             {/* Order Summary */}
             <div className="md:col-span-2">
-              <div className="bg-primary rounded-2xl p-6 sticky top-24 relative overflow-hidden">
+              <div className="bg-primary rounded-2xl p-6 md:sticky md:top-24 relative overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-accent opacity-[0.06] blur-[60px]" />
                 </div>
@@ -161,10 +186,11 @@ const CheckoutPage = () => {
               </div>
             </div>
           </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

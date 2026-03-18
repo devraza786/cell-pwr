@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useCart } from "@/contexts/CartContext";
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2, ArrowLeft, ShoppingBag } from "lucide-react";
@@ -9,9 +10,19 @@ const CartPage = () => {
   const { items, updateQty, removeItem, clearCart, totalPrice } = useCart();
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      <main className="flex-1 pt-24 pb-20">
+    <>
+      <Helmet>
+        <title>Shopping Cart - Cell PWR</title>
+        <meta name="description" content="Review your shopping cart and proceed to checkout. Fast and secure ordering for Cell PWR wellness products." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://cellpwr.com/cart" />
+        <meta property="og:title" content="Shopping Cart - Cell PWR" />
+        <meta property="og:description" content="Review your shopping cart and proceed to checkout." />
+        <meta property="og:url" content="https://cellpwr.com/cart" />
+      </Helmet>
+      <div className="min-h-screen bg-background flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24 pb-20">
         <div className="container mx-auto px-6 max-w-3xl">
           <Link to="/" className="inline-flex items-center gap-2 text-accent text-sm font-medium mb-8 hover:underline">
             <ArrowLeft size={16} /> Back to Shop
@@ -130,9 +141,10 @@ const CartPage = () => {
             </>
           )}
         </div>
-      </main>
-      <Footer />
-    </div>
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

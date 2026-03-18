@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ShoppingCart, Star } from "lucide-react";
 import { toast } from "sonner";
@@ -24,8 +25,40 @@ const ProductsSection = () => {
   const featured = products.find((p) => p.featured)!;
   const regular = products.filter((p) => !p.featured);
 
+  // Create structured data for products
+  const productSchemaData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Cell PWR Products",
+    "description": "Research-grade peptides with verified purity",
+    "itemListElement": products.map((p, index) => ({
+      "@type": "Product",
+      "position": index + 1,
+      "name": p.name,
+      "description": p.desc,
+      "price": p.price.replace("$", ""),
+      "priceCurrency": "USD",
+      "url": "https://cellpwr.com/#shop",
+      "brand": {
+        "@type": "Brand",
+        "name": "Cell PWR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "156"
+      }
+    }))
+  };
+
   return (
-    <section id="shop" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(productSchemaData)}
+        </script>
+      </Helmet>
+      <section id="shop" className="py-24 md:py-32 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-accent opacity-[0.07] blur-[100px]" />
         <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-cta opacity-[0.05] blur-[80px]" />
@@ -102,7 +135,7 @@ const ProductsSection = () => {
         </motion.div>
 
         {/* Regular Products Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
           {regular.map((p, i) => (
             <motion.div
               key={p.name}
@@ -134,6 +167,7 @@ const ProductsSection = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Check } from "lucide-react";
@@ -21,35 +22,52 @@ const OrderPage = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Navbar />
-        <main className="flex-1 pt-24 pb-20 flex items-center justify-center">
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mb-6">
-              <Check size={32} />
+      <>
+        <Helmet>
+          <title>Order Submitted - Cell PWR</title>
+          <meta name="description" content="Your order has been successfully submitted and sent for processing." />
+          <meta name="robots" content="noindex, follow" />
+        </Helmet>
+        <div className="min-h-screen bg-background flex flex-col">
+          <Navbar />
+          <main className="flex-1 pt-24 pb-20 flex items-center justify-center">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mb-6">
+                <Check size={32} />
+              </div>
+              <h1 className="font-display text-3xl font-bold text-foreground mb-3">Order Submitted!</h1>
+              <p className="text-muted-foreground mb-8">
+                Your order has been sent to 100YARDS for processing. We'll contact you shortly.
+              </p>
+              <Link
+                to="/"
+                className="inline-flex px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+              >
+                Back to Home
+              </Link>
             </div>
-            <h1 className="font-display text-3xl font-bold text-foreground mb-3">Order Submitted!</h1>
-            <p className="text-muted-foreground mb-8">
-              Your order has been sent to 100YARDS for processing. We'll contact you shortly.
-            </p>
-            <Link
-              to="/"
-              className="inline-flex px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
-            >
-              Back to Home
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </div>
+          </main>
+          <Footer />
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      <main className="flex-1 pt-24 pb-20">
-        <div className="container mx-auto px-6 max-w-2xl">
+    <>
+      <Helmet>
+        <title>Place Your Order - Cell PWR</title>
+        <meta name="description" content="Create a custom order with Cell PWR's premium products. Select the products you want and complete your order." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://cellpwr.com/order" />
+        <meta property="og:title" content="Place Your Order - Cell PWR" />
+        <meta property="og:description" content="Create a custom order with Cell PWR's premium products." />
+        <meta property="og:url" content="https://cellpwr.com/order" />
+      </Helmet>
+      <div className="min-h-screen bg-background flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24 pb-20">
+          <div className="container mx-auto px-6 max-w-2xl">
           <Link to="/" className="inline-flex items-center gap-2 text-accent text-sm font-medium mb-8 hover:underline">
             <ArrowLeft size={16} /> Back to Home
           </Link>
@@ -130,10 +148,11 @@ const OrderPage = () => {
               </p>
             </form>
           </motion.div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 
