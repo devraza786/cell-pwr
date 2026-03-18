@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 
 const logoUrl = "https://cdn.builder.io/api/v1/image/assets%2Fd4fa75cea8dc4bea80ee4cb1488f6829%2Fc5b08b69ba0c4bc28267cbe9c0361757?format=webp&width=800&height=1200";
@@ -16,6 +16,7 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { totalItems } = useCart();
+  const location = useLocation();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
@@ -28,6 +29,12 @@ const Navbar = () => {
             <a
               key={l.label}
               href={l.href}
+              onClick={(e) => {
+                if (location.pathname !== "/") {
+                  e.preventDefault();
+                  window.location.href = `/${l.href}`;
+                }
+              }}
               className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
             >
               {l.label}
@@ -48,6 +55,12 @@ const Navbar = () => {
           </Link>
           <a
             href="#order"
+            onClick={(e) => {
+              if (location.pathname !== "/") {
+                e.preventDefault();
+                window.location.href = "/#order";
+              }
+            }}
             className="hidden md:inline-flex items-center px-5 py-2 rounded-lg bg-cta text-cta-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Order Now
@@ -71,7 +84,13 @@ const Navbar = () => {
                   key={l.label}
                   href={l.href}
                   className="text-sm font-medium text-black hover:text-gray-600"
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    setOpen(false);
+                    if (location.pathname !== "/") {
+                      e.preventDefault();
+                      window.location.href = `/${l.href}`;
+                    }
+                  }}
                 >
                   {l.label}
                 </a>
@@ -79,7 +98,13 @@ const Navbar = () => {
               <a
                 href="#order"
                 className="inline-flex items-center justify-center px-5 py-2 rounded-lg bg-cta text-cta-foreground text-sm font-semibold"
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  setOpen(false);
+                  if (location.pathname !== "/") {
+                    e.preventDefault();
+                    window.location.href = "/#order";
+                  }
+                }}
               >
                 Order Now
               </a>
